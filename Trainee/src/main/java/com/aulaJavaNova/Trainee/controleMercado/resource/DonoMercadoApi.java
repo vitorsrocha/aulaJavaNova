@@ -1,7 +1,7 @@
-package com.aulaJavaNova.Trainee.resource;
+package com.aulaJavaNova.Trainee.controleMercado.resource;
 
-import com.aulaJavaNova.Trainee.domain.DonoMercado;
-import com.aulaJavaNova.Trainee.service.DonoMercadoService;
+import com.aulaJavaNova.Trainee.controleMercado.domain.DonoMercado;
+import com.aulaJavaNova.Trainee.controleMercado.service.DonoMercadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class DonoMercadoApi {
         return ResponseEntity.ok(this.donoMercadoService.salvarDonoMercado(donoMercado));
     }
 
-    @GetMapping(path = "buscar")
+    @GetMapping(path = "buscar/{id}")
     public ResponseEntity buscarDonoMercado(@PathVariable int id){
         return  ResponseEntity.ok(this.donoMercadoService.buscarDonoMercado(id));
 

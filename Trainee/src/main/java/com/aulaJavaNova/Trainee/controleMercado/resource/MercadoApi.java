@@ -1,8 +1,8 @@
-package com.aulaJavaNova.Trainee.resource;
+package com.aulaJavaNova.Trainee.controleMercado.resource;
 
-import com.aulaJavaNova.Trainee.domain.Mercado;
+import com.aulaJavaNova.Trainee.controleMercado.domain.Mercado;
 
-import com.aulaJavaNova.Trainee.service.MercadoService;
+import com.aulaJavaNova.Trainee.controleMercado.service.MercadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

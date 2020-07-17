@@ -1,7 +1,7 @@
-package com.aulaJavaNova.Trainee.service;
+package com.aulaJavaNova.Trainee.controleMercado.service;
 
-import com.aulaJavaNova.Trainee.domain.Mercado;
-import com.aulaJavaNova.Trainee.repository.MercadoRepository;
+import com.aulaJavaNova.Trainee.controleMercado.domain.Mercado;
+import com.aulaJavaNova.Trainee.controleMercado.repository.MercadoRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

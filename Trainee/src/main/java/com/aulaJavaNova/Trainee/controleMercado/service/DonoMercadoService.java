@@ -1,15 +1,8 @@
-package com.aulaJavaNova.Trainee.service;
+package com.aulaJavaNova.Trainee.controleMercado.service;
 
-import com.aulaJavaNova.Trainee.domain.DonoMercado;
-import com.aulaJavaNova.Trainee.domain.Mercado;
-import com.aulaJavaNova.Trainee.repository.DonoMercadoRepository;
-import com.aulaJavaNova.Trainee.repository.MercadoRepository;
-import org.springframework.http.ResponseEntity;
+import com.aulaJavaNova.Trainee.controleMercado.domain.DonoMercado;
+import com.aulaJavaNova.Trainee.controleMercado.repository.DonoMercadoRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.Optional;

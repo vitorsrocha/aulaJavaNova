@@ -1,4 +1,4 @@
-package com.aulaJavaNova.Trainee.domain;
+package com.aulaJavaNova.Trainee.controleMercado.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
