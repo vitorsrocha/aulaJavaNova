@@ -1,0 +1,11 @@
+version: '3'
+services:
+  database:
+    image: postgres:11
+    container_name: trainee-bd
+    ports:
+      - 7777:5432
+    environment:
+      POSTGRES_DB: trainee
+      POSTGRES_USER: trainee
+      POSTGRES_PASSWORD: 123
