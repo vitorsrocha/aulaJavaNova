@@ -1,10 +1,6 @@
 package com.aulaJavaNova.Trainee.controleDePonto.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,8 +15,10 @@ public class Ponto {
     @GeneratedValue
     private int id;
 
+    private String data;
+
     @OneToMany
-    @JoinColumn(name = "funcionario_id")
+    @JoinColumn
     private List<Funcionario> funcionario;
 
 }

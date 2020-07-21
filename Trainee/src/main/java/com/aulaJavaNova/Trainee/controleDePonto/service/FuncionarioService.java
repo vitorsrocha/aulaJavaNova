@@ -3,9 +3,8 @@ package com.aulaJavaNova.Trainee.controleDePonto.service;
 import com.aulaJavaNova.Trainee.controleDePonto.domain.Funcionario;
 import com.aulaJavaNova.Trainee.controleDePonto.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +30,14 @@ public class FuncionarioService {
         }
 
         return null;
+    }
+
+    @Transactional
+    public List<Funcionario> listarFuncionarios(){
+        return this.funcionarioRepository.findAll();
+    }
+
+    public void deletarFuncionario(Funcionario funcionario) {
+        funcionarioRepository.delete(funcionario);
     }
 }

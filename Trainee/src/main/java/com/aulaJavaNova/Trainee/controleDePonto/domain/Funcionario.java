@@ -20,6 +20,11 @@ public class Funcionario {
     @GeneratedValue
     private int id;
 
+    private int quantidade;
     private String nome;
+
+    private String diaSemana = "";
+    private int data;
+    private int mes;
 
 }
