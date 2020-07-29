@@ -4,6 +4,8 @@ import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.Pedido;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.PedidoRepository;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.service.PedidoService;
 import jdk.nashorn.internal.objects.annotations.Getter;
+import org.apache.tomcat.util.buf.StringUtils;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +27,7 @@ public class PedidoApi {
     }
 
     @GetMapping(path = "listarPedidoCliente/{id}")
-    public ArrayList listarPedidoCliente(@PathVariable int id){
-        return this.service.listarPedidos(id);
+    public String listarPedidoCliente(@PathVariable int id,@RequestParam String data){
+        return this.service.listarPedidos(id,data);
     }
 }

@@ -27,5 +27,6 @@ public class ProdutoLanchonete {
 
     @ManyToMany
     @JoinColumn
+    @Column(name = "Produto_Integrediente")
     private List<Ingrediente> ingredientes;
 }

@@ -43,7 +43,7 @@ public class ComboService {
     }
 
     @Transactional
-    public void deletarCombo(int id,Combo combo){
+    public void deletarCombo(Combo combo){
         this.repository.delete(combo);
     }
 

@@ -24,8 +24,9 @@ public class Combo {
     private int quantidade;
     private BigDecimal preco;
 
-    @OneToMany
     @JoinColumn
+    @ManyToMany
+    @Column(name = "Combo_Produto")
     private List<ProdutoLanchonete> produtos;
 
 

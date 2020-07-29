@@ -27,13 +27,17 @@ public class Pedido {
 
     @JoinColumn
     @OneToMany
+    @Column(name = "Pedido_Produto")
     private List<ProdutoLanchonete> produtosLanchonete;
-    private int quantidadeProduto;
+
+    private int quantidade;
 
     @JoinColumn
     @OneToMany
+    @Column(name = "Pedido_Combo")
     private List<Combo> combos;
-    private int quantidadeCombo;
 
-    private Date data = new Date();
+    private String tipo;
+
+    private String data;
 }

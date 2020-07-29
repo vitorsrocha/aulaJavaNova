@@ -38,4 +38,9 @@ public class ComboApi {
     public ResponseEntity montarCombo(@PathVariable int id, @RequestBody Combo combo){
         return ResponseEntity.ok(this.service.montarCombo(id,combo));
     }
+
+    @DeleteMapping(path = "deletar")
+    public void deletarCombo(@RequestBody Combo combo ){
+        this.service.deletarCombo(combo);
+    }
 }
