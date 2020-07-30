@@ -53,8 +53,7 @@ public class ProdutoLanchoneteService {
     @Transactional
     public ProdutoLanchonete montarProduto(ProdutoLanchonete produtoLanchonete, int id){
         Optional<ProdutoLanchonete> produtoLanchoneteBanco = repository.findById(id);
-        if (produtoLanchoneteBanco.isPresent()) {
-            if (produtoLanchonete.getIngredientes().size() > 0) {
+        if (produtoLanchoneteBanco.isPresent() && produtoLanchonete.getIngredientes().size() > 0) {
                 for (int i = 0; i < produtoLanchonete.getIngredientes().size(); i++) {
                     Optional<Ingrediente> ingredienteBanco = ingredienteRepository.findById(produtoLanchoneteBanco.get().getIngredientes().get(i).getId());
                     if (ingredienteBanco.get().getQuantidade() > 0) {
@@ -70,10 +69,9 @@ public class ProdutoLanchoneteService {
                 }
                 ProdutoLanchonete produto = produtoLanchoneteBanco.get();
                 produto.setQuantidade(produto.getQuantidade() + 1);
-            }
-            else {
-                System.out.println("produto com id: " + produtoLanchonete.getId() + " não possui ingredientes");
-            }
+        }
+        else {
+            System.out.println("Produto " + id + " não existe / produto sem ingredientes");
         }
         return produtoLanchonete;
     }
