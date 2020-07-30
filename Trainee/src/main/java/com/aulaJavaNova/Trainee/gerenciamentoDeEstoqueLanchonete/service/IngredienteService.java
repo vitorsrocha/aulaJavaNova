@@ -2,11 +2,8 @@ package com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.service;
 
 
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.Ingrediente;
-import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.ProdutoLanchonete;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.IngredienteRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +11,6 @@ import java.util.Optional;
 @Service
 public class IngredienteService {
     private final IngredienteRepository ingredienteRepository;
-
 
     public IngredienteService(IngredienteRepository ingredienteRepository) {
         this.ingredienteRepository = ingredienteRepository;

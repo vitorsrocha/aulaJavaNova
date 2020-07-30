@@ -30,14 +30,12 @@ public class Pedido {
     @Column(name = "Pedido_Produto")
     private List<ProdutoLanchonete> produtosLanchonete;
 
-    private int quantidade;
-
     @JoinColumn
     @OneToMany
     @Column(name = "Pedido_Combo")
     private List<Combo> combos;
 
+    private int quantidade;
     private String tipo;
-
     private String data;
 }

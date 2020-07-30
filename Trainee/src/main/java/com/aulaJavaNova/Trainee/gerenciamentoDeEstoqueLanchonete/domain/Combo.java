@@ -20,14 +20,15 @@ public class Combo {
     @GeneratedValue
     private int id;
 
-    private String nome;
-    private int quantidade;
-    private BigDecimal preco;
-
     @JoinColumn
     @ManyToMany
     @Column(name = "Combo_Produto")
     private List<ProdutoLanchonete> produtos;
+
+
+    private String nome;
+    private int quantidade;
+    private BigDecimal preco;
 
 
 }

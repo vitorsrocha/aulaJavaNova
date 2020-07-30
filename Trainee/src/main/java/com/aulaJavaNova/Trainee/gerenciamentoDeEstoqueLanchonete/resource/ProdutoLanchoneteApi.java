@@ -28,8 +28,8 @@ public class ProdutoLanchoneteApi {
     }
 
 
-    @GetMapping(path = "buscar{id}")
-    public ResponseEntity buscarProdutoLanchonete(@PathVariable int id){
+    @GetMapping(path = "buscar")
+    public ResponseEntity buscarProdutoLanchonete(@RequestParam int id){
         return ResponseEntity.ok(this.produtoLanchoneteService.buscarProdutoLanchonete(id));
     }
 
@@ -38,8 +38,8 @@ public class ProdutoLanchoneteApi {
         return this.produtoLanchoneteService.listarProdutoLanchonete();
     }
 
-    @PostMapping(path = "montar/{id}")
-    public ResponseEntity montarProduto(@RequestBody ProdutoLanchonete produtoLanchonete,@PathVariable int id){
+    @PostMapping(path = "montar")
+    public ResponseEntity montarProduto(@RequestBody ProdutoLanchonete produtoLanchonete,@RequestParam int id){
         return ResponseEntity.ok(this.produtoLanchoneteService.montarProduto(produtoLanchonete,id));
     }
 
@@ -53,5 +53,9 @@ public class ProdutoLanchoneteApi {
         return this.estoqueService.listaEstoqueZero();
     }
 
+    @DeleteMapping(path = "deletar")
+    public void deletarProdutoLanchonete(@RequestBody ProdutoLanchonete produtoLanchonete){
+        this.produtoLanchoneteService.deletarProdutoLanchonete(produtoLanchonete);
+    }
 
 }

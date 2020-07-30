@@ -5,11 +5,11 @@ import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.service.Cliente
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping(path = "cliente")
 public class ClienteApi {
     private final ClienteService service;
-
 
     public ClienteApi(ClienteService service) {
         this.service = service;
@@ -22,22 +22,23 @@ public class ClienteApi {
     }
 
     @GetMapping(path = "buscarCliente")
-    public ResponseEntity buscarCliente(@PathVariable int id){
+    public ResponseEntity buscarCliente(@RequestParam int id){
         return ResponseEntity.ok(service.buscarClientes(id));
     }
 
     @GetMapping(path = "listar")
     public ResponseEntity listarCliente(){
-        return  ResponseEntity.ok(service);
+        return  ResponseEntity.ok(service.listarCliente());
     }
 
-//    @PutMapping(path = "comprarProduto/{idProduto}/{qtdCompra}")
-//    public ResponseEntity comprarProduto(@PathVariable int idProduto, @RequestBody Cliente cliente, @PathVariable int qtdCompra){
-//        return ResponseEntity.ok(this.service.comprarProduto(idProduto,cliente,qtdCompra));
-//    }
-//
-//    @PutMapping(path = "comprarCombo/{idCombo}/{qtdCompra}")
-//    public ResponseEntity comprarCombo(@PathVariable int idCombo, @RequestBody Cliente cliente,@PathVariable int qtdCompra){
-//        return ResponseEntity.ok(this.service.comprarCombo(idCombo,cliente,qtdCompra));
-//    }
+    @DeleteMapping(path = "deletar")
+    public void deletarCleinete(@RequestBody Cliente cliente){
+        this.service.deletarCliente(cliente);
+    }
+
+    @GetMapping(path = "gastos")
+    public ResponseEntity listaGastos(){
+        return ResponseEntity.ok(this.service.listaClientesGastos());
+    }
+
 }

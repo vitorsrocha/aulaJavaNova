@@ -21,12 +21,12 @@ public class ProdutoLanchonete {
     @GeneratedValue
     private int id;
 
-    private String nome;
-    private int quantidade;
-    private BigDecimal preco;
-
     @ManyToMany
     @JoinColumn
     @Column(name = "Produto_Integrediente")
     private List<Ingrediente> ingredientes;
+
+    private String nome;
+    private int quantidade;
+    private BigDecimal preco;
 }

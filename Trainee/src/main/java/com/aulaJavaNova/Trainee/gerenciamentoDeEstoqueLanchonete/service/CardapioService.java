@@ -20,24 +20,22 @@ public class CardapioService {
         this.comboRepository = comboRepository;
     }
 
+
     @Transactional
     public ArrayList cardapio(){
-
         List<ProdutoLanchonete> produtos = this.produtoRepository.findAll();
         List<Combo> combos = this.comboRepository.findAll();
         ArrayList cardapio = new ArrayList();
         for (ProdutoLanchonete produto: produtos) {
            if ( produto.getQuantidade() > 0){
-               cardapio.add("Produto: " + produto.getId() + " - "+ produto.getNome());
+               cardapio.add("Produto: " + produto.getId() + " - "+ produto.getNome() + " - R$ " + produto.getPreco());
            }
         }
-
         for (Combo combo: combos) {
             if (combo.getQuantidade() > 0){
-                cardapio.add("Combo: " + combo.getId() + " - " + combo.getNome());
+                cardapio.add("Combo: " + combo.getId() + " - " + combo.getNome() + " - R$ " + combo.getPreco());
             }
         }
-
         return cardapio;
     }
 }

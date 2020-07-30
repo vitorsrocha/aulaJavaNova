@@ -6,7 +6,6 @@ import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.ProdutoL
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ComboRepository;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.IngredienteRepository;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ProdutoLanchoneteRepository;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,6 +26,11 @@ public class EstoqueService {
 
     }
 
+
+    /*MétodoEstoqueZero
+    *
+    * este método verifica se o estoque esta zerado e retorna nome do item
+    * */
     @Transactional
     public String listaEstoqueZero(){
 
@@ -38,24 +42,21 @@ public class EstoqueService {
         int total = 0;
 
         for(Ingrediente ingrediente: ingredientes){
-            if (ingrediente.getQuantidadeUnidade() < 1){
+            if (ingrediente.getQuantidade() < 1){
                 estoque.add(ingrediente.getNome());
             }
         }
-
         for (ProdutoLanchonete produto: produtos) {
             if ( produto.getQuantidade() < 1){
                 estoque.add(produto.getNome());
 
             }
         }
-
         for (Combo combo: combos) {
             if (combo.getQuantidade() < 1){
                 estoque.add(combo.getNome());
             }
         }
-
         for (int i = 0 ; i< estoque.size();i++) {
             total ++;
         }

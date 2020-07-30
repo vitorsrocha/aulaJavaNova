@@ -5,7 +5,6 @@ import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.ProdutoL
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ComboRepository;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ProdutoLanchoneteRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -47,6 +46,12 @@ public class ComboService {
         this.repository.delete(combo);
     }
 
+
+    /*Método montarCombo
+    *
+    * este método ira realizar uma validação de ingredientes do combo e também verificar se existe estoque de produtos para montar o combo.
+    *parametro id = id do combo
+    * */
     @Transactional
     public Combo montarCombo(int id, Combo combo) {
         Optional<Combo> comboBanco = this.repository.findById(id);
@@ -62,8 +67,6 @@ public class ComboService {
                         if (produtoBanco.get().getQuantidade() < 4) {
                             System.out.println("\nEstoque do item " + produtoBanco.get().getNome() + " esta baixo. \nQuantidade: " + produtoBanco.get().getQuantidade());
                         }
-
-
                     } else {
                         System.out.println("Sem produto para o combo " + combo.getNome() + " no estoque");
                     }

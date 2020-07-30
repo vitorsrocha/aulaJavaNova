@@ -23,6 +23,5 @@ public class Ingrediente {
     private int id;
 
     private String nome;
-    private BigDecimal quantidadePeso;
-    private int quantidadeUnidade;
+    private int quantidade;
 }

@@ -14,7 +14,6 @@ public class ComboApi {
 
     private final ComboService service;
 
-
     public ComboApi(ComboService service) {
         this.service = service;
     }
@@ -24,8 +23,8 @@ public class ComboApi {
         return ResponseEntity.ok(this.service.salvarCombo(combo));
     }
 
-    @GetMapping(path = "buscar/{id}")
-    public ResponseEntity buscarCombo(@PathVariable int id){
+    @GetMapping(path = "buscar")
+    public ResponseEntity buscarCombo(@RequestParam int id){
         return ResponseEntity.ok(this.service.buscarCombo(id));
     }
 
@@ -34,8 +33,8 @@ public class ComboApi {
         return this.service.listarCombo();
     }
 
-    @PostMapping(path = "montarCombo/{id}")
-    public ResponseEntity montarCombo(@PathVariable int id, @RequestBody Combo combo){
+    @PostMapping(path = "montar")
+    public ResponseEntity montarCombo(@RequestParam int id, @RequestBody Combo combo){
         return ResponseEntity.ok(this.service.montarCombo(id,combo));
     }
 
