@@ -38,7 +38,6 @@ public class PedidoService {
         pedido.setData(strDate);
     }
 
-
      /*comprarProduto
      *
      * este metodo realiza a compra de produtos verificando se existe no estoque, cliente existe e se o a quantidade solicitada é menor ou igual a quantidade no estoque, além de informa se o estoque esta abaixo de 4
@@ -47,9 +46,9 @@ public class PedidoService {
 
         Optional<ProdutoLanchonete> produtoBanco = this.produtoRepository.findById(pedido.getProdutosLanchonete().get(0).getId());
         Optional<Cliente> clienteBanco = this.clienteRerpository.findById(pedido.getIdCliente().getId());
-        if (produtoBanco.isPresent() && clienteBanco.isPresent()){
+
+        if (produtoBanco.isPresent() && clienteBanco.isPresent() && pedido.getQuantidade() > 0){
             ProdutoLanchonete produto = produtoBanco.get();
-                if (pedido.getQuantidade() > 0) {
                     if (produto.getQuantidade() >= pedido.getQuantidade()) {
                         produto.setQuantidade(produto.getQuantidade() - pedido.getQuantidade());
                         Cliente clienteAtual = clienteBanco.get();
@@ -67,11 +66,8 @@ public class PedidoService {
                     } else {
                         System.out.println("Não temos em estoque a quantidade  " + pedido.getQuantidade() + ", So temos " + produto.getQuantidade());
                     }
-                }else{
-                    System.out.println("Quantidade invalida " + pedido.getQuantidade());
-                }
         }else {
-            System.out.println("Cliente ou produto não existe!!! " + clienteBanco + ", " + produtoBanco);
+            System.out.println("Cliente / produto / quantidade não existe!!! " + pedido.getIdCliente().getId() + ", " + pedido.getProdutosLanchonete().get(0).getId() + ", " + pedido.getQuantidade());
         }
         return null;
     }
@@ -83,17 +79,19 @@ public class PedidoService {
     public Combo comprarCombo( Pedido pedido){
         Optional<Combo> comboBanco = this.comboRepository.findById(pedido.getCombos().get(0).getId());
         Optional<Cliente> clienteBanco = this.clienteRerpository.findById(pedido.getIdCliente().getId());
-        if (comboBanco.isPresent() && clienteBanco.isPresent()){
+
+        if (comboBanco.isPresent() && clienteBanco.isPresent() && pedido.getQuantidade() > 0){
             Combo combo = comboBanco.get();
-                if (pedido.getQuantidade() > 0) {
                     if (combo.getQuantidade() >= pedido.getQuantidade()) {
                         combo.setQuantidade(combo.getQuantidade() - pedido.getQuantidade());
                         Cliente clienteAtual = clienteBanco.get();
                         clienteAtual.setQtdCompraRealizada(clienteAtual.getQtdCompraRealizada()+pedido.getQuantidade());
                         clienteAtual.setGastos(clienteAtual.getGastos().add(combo.getPreco()));
+
                         if (combo.getQuantidade() < 4) {
                             System.out.println("Estoque baixo para o produto " + combo.getNome() + ", apenas " + combo.getQuantidade());
                         }
+
                         formatData(pedido);
                         System.out.println("Compra efetuada com sucesso!!!");
                         pedido.setTipo("Combo");
@@ -103,11 +101,10 @@ public class PedidoService {
                     } else {
                         System.out.println("Não temos em estoque a quantidade  " + pedido.getQuantidade() + ", So temos " + combo.getQuantidade());
                     }
-                }else{
+
                     System.out.println("Quantidade invalida " + pedido.getQuantidade());
-                }
         }else {
-            System.out.println("Cliente ou combo não existe!!! " + clienteBanco + ", " + comboBanco);
+            System.out.println("Cliente / combo / quantidade invalida !!! " + pedido.getIdCliente().getId() + ", " + pedido.getCombos().get(0).getId() + ", " + pedido.getQuantidade());
         }
         return null;
     }
@@ -147,18 +144,21 @@ public class PedidoService {
 
         int qtdProduto = 0;
         int qtdCombo = 0;
+
         if (clienteBanco.isPresent()) {
-            if(pedidos.get(0).getData().equals(data)) {
                 for (Pedido pedido : pedidos) {
-                    if (pedido.getTipo().equals("Produto") && pedido.getData().equals(data) && pedido.getIdCliente().getId() == id) {
-                        qtdProduto = qtdProduto + pedido.getQuantidade();
-                    }
-                    if (pedido.getTipo().equals("Combo") && pedido.getData().equals(data) && pedido.getIdCliente().getId() == id) {
-                        qtdCombo = qtdCombo + pedido.getQuantidade();
+                    if (pedido.getData().equals(data) && pedido.getIdCliente().getId() == id) {
+                        switch (pedido.getTipo()){
+                            case "Produto" :
+                                qtdProduto = qtdProduto + pedido.getQuantidade();
+                            case "Combo" :
+                                qtdCombo = qtdCombo + pedido.getQuantidade();
+                            default: System.out.println("Item não encontrado");
+                        }
                     }
                 }
-            }else
-                return "O cliente " + clienteBanco.get().getNome() + " não realizou compras no dia " + data;
+        }else{
+            return "O cliente " + clienteBanco.get().getNome() + " não realizou compras no dia " + data;
         }
         return "Cliente " + clienteBanco.get().getNome() +"\nQuantidade Produtos comprado no dia " + data + ": " + qtdProduto + "\nQuantidade Combos comprado no dia "  + data + ": " + qtdCombo + "\nTotal de itens: " +(qtdProduto+qtdCombo);
     }

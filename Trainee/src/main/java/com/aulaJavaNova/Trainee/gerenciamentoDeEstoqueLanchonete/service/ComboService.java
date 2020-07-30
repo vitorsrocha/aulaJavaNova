@@ -56,8 +56,7 @@ public class ComboService {
     public Combo montarCombo(int id, Combo combo) {
         Optional<Combo> comboBanco = this.repository.findById(id);
 
-        if (comboBanco.isPresent()) {
-            if (combo.getProdutos().size() > 0) {
+        if (comboBanco.isPresent() && combo.getProdutos().size() > 0) {
                 for (int i = 0; i < combo.getProdutos().size(); i++) {
                     Optional<ProdutoLanchonete> produtoBanco = this.produtoRepository.findById(comboBanco.get().getProdutos().get(i).getId());
                     if (produtoBanco.get().getQuantidade() > 0) {
@@ -73,9 +72,9 @@ public class ComboService {
                 }
                 Combo comboLanchonete = comboBanco.get();
                 comboLanchonete.setQuantidade(comboLanchonete.getQuantidade() + 1);
-            } else {
-                System.out.println("Combo com o id " + combo.getId() + "não possui produtos");
-            }
+        }
+        else {
+            System.out.println("Combo " + combo.getId() + "não existe / combo sem produtos");
         }
         return combo;
     }
