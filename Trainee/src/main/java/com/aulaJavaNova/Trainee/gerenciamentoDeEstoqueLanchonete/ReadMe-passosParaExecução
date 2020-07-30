@@ -19,3 +19,9 @@ Passos para execução no PostMan
 ******
 O arquivo do post com as requisições podem ser importadodos
 nome do arquivo "TraineeSGgerenciamentodelanchonete.postman_collection.json"
+
+*********************
+Não existe uma class controle de estoque, pois o controle é feito nas classes de ingrediente, produto, combo.
+
+*******************
+Primeiramento deve salvar ingredientes, produtos e combo. O controle dos itens (estoque) começa quando é montado um produto ou combo e o pedido é feito.
