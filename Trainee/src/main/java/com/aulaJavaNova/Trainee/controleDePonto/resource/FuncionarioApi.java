@@ -2,11 +2,9 @@ package com.aulaJavaNova.Trainee.controleDePonto.resource;
 
 
 import com.aulaJavaNova.Trainee.controleDePonto.domain.Funcionario;
-import com.aulaJavaNova.Trainee.controleDePonto.domain.Ponto;
 import com.aulaJavaNova.Trainee.controleDePonto.service.FuncionarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,6 +15,7 @@ public class FuncionarioApi {
     public FuncionarioApi(FuncionarioService funcionarioService){
         this.funcionarioService = funcionarioService;
     }
+
 
     @PostMapping(path = "salvarFuncionario")
     public ResponseEntity salvarFuncionario(@RequestBody Funcionario funcionario){

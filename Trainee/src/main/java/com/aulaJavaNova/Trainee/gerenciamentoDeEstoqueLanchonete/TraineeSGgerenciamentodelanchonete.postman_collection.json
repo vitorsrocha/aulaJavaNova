@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "b1e00c3e-df9d-44d6-8b75-a7af4a755928",
+		"name": "TraineeSGgerenciamentodelanchonete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "salvarCliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":79,\n    \"nome\":\"vitor\",\n    \"cpf\":\"12332112332\",\n    \"gastos\":0    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/cliente/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/cliente/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarIngredientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"nome\":\"salsicha\",\n    \"quantidade\":10\n}\n\n// {\n//     \"id\":168,\n//     \"nome\":\"pao\",\n//     \"quantidadePeso\":1000,\n//     \"quantidadeUnidade\":10\n\n// },\n// {\n//      \"id\":166,\n//     \"nome\":\"batata\",\n//     \"quantidadePeso\":1000,\n//     \"quantidadeUnidade\":10\n// }\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ingrediente/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ingrediente",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarProduto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\":85,\n    \"nome\" : \"sucoLaranja\",\n    \"ingredientes\":[{\"id\":81}],\n    \"preco\":2.50,\n    \"quantidade\":10\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/cadastrar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "montarProduto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ingredientes\":[{},{}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/montar?id=88",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"montar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "88"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarProdutoLanchonete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarCombo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"nome\":\"basicoLaranja\",\n    \"produtos\":[{\n        \"id\":88\n    },\n    {\n        \"id\":85\n    }],\n    \"preco\":14.00,\n    \"quantidade\":10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/combo/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"combo",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "montarCombo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"produtos\":[{},{}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/combo/montar?id=90",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"combo",
+						"montar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "90"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarCombo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cardapio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/cardapio",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"cardapio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidoProduto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idCliente\":{\n        \"id\":80\n        },\n    \"produtosLanchonete\":[{\n        \"id\":88\n    }],\n    \"quantidade\":1\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/pedido/pedir?tipoPedido=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"pedido",
+						"pedir"
+					],
+					"query": [
+						{
+							"key": "tipoPedido",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidoCombo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idCliente\":{\n        \"id\":80\n        },\n    \"combos\":[{ \"id\":90\n    }],\n    \"quantidade\":1\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/pedido/pedir?tipoPedido=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"pedido",
+						"pedir"
+					],
+					"query": [
+						{
+							"key": "tipoPedido",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listarpedido",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id",
+						"value": "75",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "data",
+						"value": "07/29/2020",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/pedido/listarPedidoCliente?id=79&data=30/07/2020",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"pedido",
+						"listarPedidoCliente"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "79"
+						},
+						{
+							"key": "data",
+							"value": "30/07/2020"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListagastosDosClientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/cliente/gastos",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"gastos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "estoqueZero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtoLanchonete/estoqueZero",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtoLanchonete",
+						"estoqueZero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletarIngrediente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/ingrediente/deletar?id=84",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ingrediente",
+						"deletar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "84"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
