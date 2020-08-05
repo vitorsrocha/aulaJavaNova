@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TraineeApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testeClienteService(){
+
+
 	}
 
 }
