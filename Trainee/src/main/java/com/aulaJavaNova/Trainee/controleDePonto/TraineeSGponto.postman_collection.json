@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "ef650719-0c9d-4cdf-a248-103c6c923cc4",
+		"name": "TraineeSGponto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "desbloquearPonto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ponto/desbloquear/73",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ponto",
+						"desbloquear",
+						"73"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddFuncionario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"vitor\",\n    \"quantidate\": 0\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/funcionario/salvarFuncionario",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"salvarFuncionario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPonto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"funcionario\": [{\n        \"id\": 1\n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ponto/salvarPonto",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ponto",
+						"salvarPonto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listFuncionarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\" : \"rocha\",\n    \"quantidade\" : 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/funcionario/funcionarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"funcionarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "baterPonto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ponto/baterPonto/53",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ponto",
+						"baterPonto",
+						"53"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listPonto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ponto/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ponto",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletarPonto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"id\": 73\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ponto/deletarPonto",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ponto",
+						"deletarPonto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletarFuncionario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"id\": 73\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/funcionario/deletarFuncionario",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"deletarFuncionario"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

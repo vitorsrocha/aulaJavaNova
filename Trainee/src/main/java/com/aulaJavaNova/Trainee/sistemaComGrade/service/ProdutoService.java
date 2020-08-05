@@ -21,7 +21,7 @@ public class ProdutoService {
 
     @Transactional
     public Produtos salvarProduto(Produtos produtos){
-//        return this.repository.save(produtos);
+
         List<Itens> itensBanco = produtos.getItens();
         if (itensBanco != null) {
             for (Itens item : itensBanco) {

@@ -38,17 +38,15 @@ public class ItensService {
         Optional<Itens> itensBanco = this.repository.findById(idItem);
         Optional<Produtos> produtosBanco = this.produtosRepository.findById(idProduto);
 
-
-
         if (itensBanco.isPresent() && produtosBanco.isPresent()){
             Itens item = itensBanco.get();
             Produtos produtos = produtosBanco.get();
-            System.out.println("entrou0");
+
             if(item.getQuantidade() > 0 && item.getQuantidade() >= quantidade) {
-                System.out.println("entrou1");
+
                 for (int i = 0; i < produtosBanco.get().getItens().size();i++){
                     if (produtos.getItens().get(i).getId() == idItem){
-                        System.out.println("entrou2");
+
                         produtos.setQuantidadeVendas(produtos.getQuantidadeVendas() + quantidade);
                         item.setQuantidade(item.getQuantidade() - quantidade);
                         produtosRepository.save(produtos);

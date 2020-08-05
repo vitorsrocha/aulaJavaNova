@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "187fa683-93da-40dd-88cb-9e12a74380c7",
+		"name": "TraineeSGgerenciamentoCampeonatoFutebol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "salvarTime",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"d\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/time/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"time",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarCamp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"c2\",\n    \"times\":[{\n        \"id\":106\n    },{\n        \"id\":108\n    },{\n        \"id\":109\n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/camp/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"camp",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTimeCamp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"campeonatos\":{\"id\":149 },\n    \"times\":{\"id\":146}\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ctrlCamp/addTimeCamp",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ctrlCamp",
+						"addTimeCamp"
+					],
+					"query": [
+						{
+							"key": "pontos",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ponto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \n        \"id\":111,\n        \"times\":[{\n            \"id\":106\n        }]\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/camp/ponto?pontos=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"camp",
+						"ponto"
+					],
+					"query": [
+						{
+							"key": "pontos",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarCamp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/camp/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"camp",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarTimeCamp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/camp/listaTimeCampeonato?id=111",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"camp",
+						"listaTimeCampeonato"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "111"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listaPrimeiroCamp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/ctrlCamp/listaPrimeirosCamp?id=148",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ctrlCamp",
+						"listaPrimeirosCamp"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "148"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
