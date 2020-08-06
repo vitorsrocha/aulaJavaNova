@@ -26,4 +26,9 @@ public class ProdutoApi {
     public List<Produtos> listarProduto(){
         return this.service.listarProduto();
     }
+
+    @GetMapping(path = "totalMontante")
+    public ResponseEntity relatorioVendaTotalMontante(@RequestParam int idProduto){
+        return ResponseEntity.ok(this.service.relatorioVendaTotalMontante(idProduto));
+    }
 }

@@ -121,6 +121,61 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "relatorioDeVendasPeriodo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/itens/relatorio?dataInicio=20200806&dataFim=20200806",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"itens",
+						"relatorio"
+					],
+					"query": [
+						{
+							"key": "dataInicio",
+							"value": "20200806"
+						},
+						{
+							"key": "dataFim",
+							"value": "20200806"
+						}
+					]
+				},
+				"description": "Passar parametros igual no banco yyyyMMdd"
+			},
+			"response": []
+		},
+		{
+			"name": "totalMontante",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtos/totalMontante?idProduto=230",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtos",
+						"totalMontante"
+					],
+					"query": [
+						{
+							"key": "idProduto",
+							"value": "230"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
