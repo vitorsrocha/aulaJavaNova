@@ -43,6 +43,13 @@ public class ProdutoService {
         return this.repository.findAll();
     }
 
+    /*relatorioVendaTotalMontante
+    parametros
+    * idProduto
+
+    funcionamento
+    * realiza a soma de todos os itens do produto vendido, calculado o montante bruto das vendas
+    * */
     @Transactional
     public BigDecimal relatorioVendaTotalMontante(int idProduto){
         Optional<Produtos> produtosBanco = this.repository.findById(idProduto);
