@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -29,16 +28,11 @@ public class ItensService {
         this.relatorioVendaRepository = relatorioVendaRepository;
     }
 
-//    public void formatData(RelatorioVenda relatorioVenda) {
-//        SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
-//        Date data = new Date();
-//        String strDate = sm.format(data);
-//        relatorioVenda.setDataHora(strDate);
-//    }
-
-
+    /*inserirEstoque
+    *verifica se o id existe, caso exista sera feito a incrementação de quantidade descrita no Objeto Itens.
+    */
     @Transactional
-    public Itens iserirEstoque(Itens itens){
+    public Itens inserirEstoque(Itens itens){
         Optional<Itens> itensBanco = this.repository.findById(itens.getId());
 
         if (itensBanco.isPresent()){
@@ -49,6 +43,19 @@ public class ItensService {
         return null;
     }
 
+    /*realizarVenda
+    Parametros
+    *idItem - id do item que deseja vender
+    quantidade
+    *idProduto - id do produto que este item esta vinculado
+
+    funcionamento
+    *verifica se item e produto existe
+    *realizada validacoes de estique(quantidade disponivel)
+    *percorre os itens que deseja vender
+    *realiza alteracao nas quantidade de itens vendido e produto vendido
+    *salva dados da venda na tabela relatorio.
+    * */
     @Transactional
     public Itens realizarVenda(int idItem, Integer quantidade, int idProduto){
         Optional<Itens> itensBanco = this.repository.findById(idItem);
@@ -84,6 +91,15 @@ public class ItensService {
         return null;
     }
 
+    /*
+    relatorioVenda
+    paramentros
+    *dataInicio - deve receber uma data de inicio no formato do banco 20200807
+    *dataFim - deve receber uma data de fim no formato do banco 20200807
+
+    funcionamento
+    *sera apresentado todas as vendas realizadas entre esse periodo.
+    * */
     @Transactional
     public List<RelatorioVenda> relatorioVenda(String dataInicio,String dataFim){
 
