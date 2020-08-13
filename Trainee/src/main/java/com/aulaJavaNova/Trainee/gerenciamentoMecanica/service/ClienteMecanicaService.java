@@ -18,7 +18,7 @@ public class ClienteMecanicaService {
 
     @Transactional
     public ClienteMecanica salvarCliente(ClienteMecanica cliente){
-        return this.repository.save(cliente);
+        return repository.save(cliente);
     }
 
     @Transactional

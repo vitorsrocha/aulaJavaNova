@@ -19,8 +19,8 @@ public class ClienteMecanica extends Ids{
     private String nome;
     private String telefone;
 
-    @JoinColumn
-    @OneToMany
+    @JoinColumn(name = "Cliente")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Veiculo> veiculos;
 
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,16 +15,25 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class OrdemServico {
-    @Id
-    @GeneratedValue
-    private int id;
+public class OrdemServico extends Ids {
 
-    private String data;
+    private String descricao;
+
     private String dataInicio;
-    private String DataFim;
+    private String dataFim;
+    private Boolean fechada = false;
+    private String dataConclusao;
 
-    @JoinColumn
-    @OneToMany
-    private List<Problema> problema;
+    @JoinColumn(name = "Orcamento")
+    @ManyToOne
+    private Orcamento orcamento;
+
+    @JoinColumn(name = "Funcionario")
+    @ManyToMany
+    private List<Funcionario> funcionario;
+
+    @JoinColumn(name = "Veiculo")
+    @ManyToOne
+    private Veiculo veiculo;
+
 }

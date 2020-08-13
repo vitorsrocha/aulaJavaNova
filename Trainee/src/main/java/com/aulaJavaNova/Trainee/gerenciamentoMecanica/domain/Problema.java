@@ -7,29 +7,18 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Problema {
+public class Problema extends Ids{
 
-    @Id
-    @GeneratedValue
-    private int id;
-    private String defeito;
-    private BigDecimal valor = BigDecimal.ZERO;
-    private int qtdDiasParaFazer = 0;
-
-    @JoinColumn
-    @OneToMany
-    private List<OrdemServico> os;
-
-
-    @JoinColumn
-    @ManyToMany
-    private List<Veiculo> veiculo;
+    private String descricao;
+    private String peca;
+    private BigDecimal valorMaoDeObra = BigDecimal.ZERO;
+    private BigDecimal valorPeca = BigDecimal.ZERO;
+    private int diasTrabalho = 0;
 
 }

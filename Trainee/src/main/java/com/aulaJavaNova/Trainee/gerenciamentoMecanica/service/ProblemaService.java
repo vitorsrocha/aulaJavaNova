@@ -9,10 +9,8 @@ import com.aulaJavaNova.Trainee.gerenciamentoMecanica.repository.VeiculoReposito
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProblemaService {
@@ -26,31 +24,13 @@ public class ProblemaService {
 
     @Transactional
     public Problema salvarProblema(Problema problema){
-      List<Veiculo> veiculoBanco = this.veiculoRepository.findAll();
 
-        for (Veiculo veiculos: veiculoBanco) {
-            if (veiculos.getPlaca() == problema.getVeiculo().get(0).getPlaca()) {
-                return this.repository.save(problema);
-            }
-        }
         return null;
     }
 
     @Transactional
     public List<String> listarProblemasVeiculo(Veiculo veiculo){
-        List<Veiculo> veiculoBanco = this.veiculoRepository.findAll();
-        List<String> aux = new ArrayList<>();
-        List<Problema> problemas = this.repository.findAll();
 
-//        BigDecimal totalCusto = BigDecimal.ZERO;
-//        int totalDias = 0;
-
-
-        for (int i = 0; i < problemas.size();i++) {
-            if (problemas.get(i).getVeiculo().get(0).getPlaca() == veiculo.getPlaca()) {
-              aux.add(problemas.get(i).getDefeito() + problemas.get(i).getValor() + problemas.get(i).getQtdDiasParaFazer());
-            }
-        }
         return null;
     }
 }

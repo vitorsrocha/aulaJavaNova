@@ -1,4 +1,9 @@
 package com.aulaJavaNova.Trainee.gerenciamentoMecanica.repository;
 
-public class RegistroDiaTrabalhoepository {
+import com.aulaJavaNova.Trainee.gerenciamentoMecanica.domain.RegistroDiaTrabalho;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RegistroDiaTrabalhoepository extends JpaRepository<RegistroDiaTrabalho,Integer> {
 }

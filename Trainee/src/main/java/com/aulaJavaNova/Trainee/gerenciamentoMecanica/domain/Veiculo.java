@@ -14,12 +14,9 @@ import javax.persistence.*;
 @Getter
 public class Veiculo extends Ids{
 
-
     private String marca;
     private String modelo;
     private int ano;
-    private String cor;
     private String placa;
-    private String descricaoProblemaCliente;
 
 }
