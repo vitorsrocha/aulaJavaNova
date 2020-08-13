@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "50ade381-cee4-44a2-b7cd-93f8c71e81e9",
+		"name": "TraineeSGsistemacomgrade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "salvarProdutoEitens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"camiseta\",\n    \"itens\":[{\n        \"nome\":\"camisetaVerde\",\n        \"cor\":\"verde\",\n        \"quantidade\":\"10\"\n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/produtos/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtos",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarProdutosEItens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtos/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtos",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "realizarVenda",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "idItem",
+						"value": "159",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "quantidade",
+						"value": "2",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/itens/realizarVenda?id=159&quantidade=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"itens",
+						"realizarVenda"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "159"
+						},
+						{
+							"key": "quantidade",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "inserirEstoque",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":159,\n    \"quantidade\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/itens/inserirEstoque",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"itens",
+						"inserirEstoque"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "relatorioDeVendasPeriodo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/itens/relatorio?dataInicio=20200806&dataFim=20200806",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"itens",
+						"relatorio"
+					],
+					"query": [
+						{
+							"key": "dataInicio",
+							"value": "20200806"
+						},
+						{
+							"key": "dataFim",
+							"value": "20200806"
+						}
+					]
+				},
+				"description": "Passar parametros igual no banco yyyyMMdd"
+			},
+			"response": []
+		},
+		{
+			"name": "totalMontante",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/produtos/totalMontante?idProduto=230",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"produtos",
+						"totalMontante"
+					],
+					"query": [
+						{
+							"key": "idProduto",
+							"value": "230"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

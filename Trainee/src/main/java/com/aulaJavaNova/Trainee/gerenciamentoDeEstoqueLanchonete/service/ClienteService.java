@@ -3,36 +3,46 @@ package com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.service;
 
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.Cliente;
 import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ClienteRepository;
-import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ComboRepository;
-import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.PedidoRepository;
-import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.repository.ProdutoLanchoneteRepository;
 
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
+import java.text.ParseException;
 import java.util.*;
 
 @Service
 
 public class ClienteService {
     private final ClienteRepository repository;
-    private final ProdutoLanchoneteRepository produtoRepository;
-    private final ComboRepository comboRepository;
-    private final PedidoRepository pedidoRepository;
-    private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository repository, ProdutoLanchoneteRepository produtoRepository, ComboRepository comboRepository,PedidoRepository pedidoRepository,ClienteRepository clienteRepository) {
+
+    public ClienteService(ClienteRepository repository) {
         this.repository = repository;
-        this.produtoRepository = produtoRepository;
-        this.comboRepository = comboRepository;
-        this.pedidoRepository = pedidoRepository;
-        this.clienteRepository = clienteRepository;
+
     }
 
     @Transactional
     public Cliente salvarCliente(Cliente cliente){
-    return this.repository.save(cliente);
+        String pattern = "###.###.###-##";
+        cliente.setCpf(format(pattern,cliente.getCpf()));
+        if (cliente.getCpf().length() > 11) {
+           return this.repository.save(cliente);
+        }
+        return null;
+    }
+
+
+    private static String format(String pattern, Object value) {
+        MaskFormatter mask;
+        try {
+            mask = new MaskFormatter(pattern);
+            mask.setValueContainsLiteralCharacters(false);
+            return mask.valueToString(value);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Transactional
