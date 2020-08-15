@@ -18,7 +18,7 @@ public class VeiculoService {
     }
 
     @Transactional
-    public Veiculo salvarVeiculo(Veiculo veiculo){
+    public Veiculo addNovoVeiculo(Veiculo veiculo){
         return repository.save(veiculo);
     }
 
@@ -31,4 +31,5 @@ public class VeiculoService {
         }
         return null;
     }
+
 }

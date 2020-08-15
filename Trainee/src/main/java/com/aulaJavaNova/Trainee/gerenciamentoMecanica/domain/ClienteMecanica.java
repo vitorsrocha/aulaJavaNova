@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Setter
@@ -18,9 +18,5 @@ public class ClienteMecanica extends Ids{
 
     private String nome;
     private String telefone;
-
-    @JoinColumn(name = "Cliente")
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Veiculo> veiculos;
 
 }

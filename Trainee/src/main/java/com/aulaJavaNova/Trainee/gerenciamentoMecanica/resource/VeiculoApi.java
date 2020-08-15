@@ -3,10 +3,7 @@ package com.aulaJavaNova.Trainee.gerenciamentoMecanica.resource;
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.domain.Veiculo;
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.service.VeiculoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "veiculo")
@@ -18,8 +15,12 @@ public class VeiculoApi {
         this.service = service;
     }
 
-    @PostMapping(path = "salvar")
+    @PostMapping(path = "addVeiculo")
     public ResponseEntity salvarVeiculo(@RequestBody Veiculo veiculo){
-        return ResponseEntity.ok(this.service.salvarVeiculo(veiculo));
+        return ResponseEntity.ok(this.service.addNovoVeiculo(veiculo));
+    }
+    @GetMapping(path = "buscar")
+    public ResponseEntity buscarVeiculo(@RequestParam int id){
+        return ResponseEntity.ok(this.service.buscarveiculo(id));
     }
 }

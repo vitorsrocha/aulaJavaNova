@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -18,11 +18,16 @@ public class RegistroDiaTrabalho extends Ids{
 
     private String descricaoDiaTrabalho;
 
-    @JoinColumn
+    @JoinColumn(name = "Ordem_servico_id")
     @OneToOne
     private OrdemServico ordemServico;
 
+    @JoinColumn(name = "Funcionario_id")
+    @ManyToOne
+    private Funcionario funcionario;
+
     private Date data = new Date();
+
 
 
 }

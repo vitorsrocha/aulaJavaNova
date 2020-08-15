@@ -1,10 +1,12 @@
 package com.aulaJavaNova.Trainee.gerenciamentoMecanica.service;
 
+import com.aulaJavaNova.Trainee.gerenciamentoDeEstoqueLanchonete.domain.Cliente;
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.domain.ClienteMecanica;
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.repository.ClienteMecanicaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +24,11 @@ public class ClienteMecanicaService {
     }
 
     @Transactional
+    public List<ClienteMecanica> listarCliente(){
+        return repository.findAll();
+    }
+
+    @Transactional
     public ClienteMecanica buscarCliente(int id){
         Optional<ClienteMecanica> clienteBanco = this.repository.findById(id);
 
@@ -30,4 +37,5 @@ public class ClienteMecanicaService {
         }
         return null;
     }
+
 }

@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "9c9a8102-4906-4646-a3ea-4811161ee3b2",
+		"name": "TraineeSGsistemaGerenciamentoMecanica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "salvarFuncionarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"jose\",\n    \"mecanico\":false\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/funcionario/salvar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"salvar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarCliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"vitor\",\n    \"telefone\":\"123321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/cliente/salvarCliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"salvarCliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarCliente&&Veiculos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"marca\": \"gm\",\n    \"modelo\": \"montana\",\n    \"ano\": 2005,\n    \"placa\": \"123321\",\n    \"cliente\": \n        {\n            \"id\": 378\n        }\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/veiculo/addVeiculo",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"veiculo",
+						"addVeiculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criarOrcamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"funcionario\": {\n        \"id\":376\n    },\n    \"problemas\":[{\n        \"descricao\":\"bateria ruim\",\n        \"peca\":\"bateria\",\n        \"valorMaoDeObra\":10.00,\n        \"valorPeca\":250.00,\n        \"diasTrabalho\": 1\n    },\n    {\n        \"descricao\":\"falhando\",\n        \"peca\":\"limpeza de bicos\",\n        \"valorMaoDeObra\":80.00,\n        \"valorPeca\":0.00,\n        \"diasTrabalho\": 1\n    }],\n    \"veiculo\":{\n        \"id\":379\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/orcamento/criarOrcamento",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"orcamento",
+						"criarOrcamento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criarOS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\":\"esta falhando e com a bateria ruim\",\n    \"funcionario\":[{\n        \"id\":376\n    }],\n    \"orcamento\":{\n      \"id\":380\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ordemservico/criarOS",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ordemservico",
+						"criarOS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrarTarefa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricaoDiaTrabalho\":\"foi realizada a troca da bateria\",\n    \"ordemServico\":{\n        \"id\":345\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/ordemservico/registrarTarefa",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ordemservico",
+						"registrarTarefa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finalizarOS",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/ordemservico/finalizarOS?id=385",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ordemservico",
+						"finalizarOS"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "385"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registroBuscaVeiculo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/ordemservico/registroBuscaVeiculo?idOS=385",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ordemservico",
+						"registroBuscaVeiculo"
+					],
+					"query": [
+						{
+							"key": "idOS",
+							"value": "385"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarClientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/cliente/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/cliente/buscar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cliente",
+						"buscar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarFuncionarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/funcionario/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarFuncionario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/funcionario/buscar?id=339",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "339"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BusacarRegistrosFuncionario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/funcionario/registrosFuncionario?id=339",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"funcionario",
+						"registrosFuncionario"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "339"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarOrcamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/orcamento/buscar?id=341",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"orcamento",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "341"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarOSfuncionario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/ordemservico/buscarOSfuncionario?idFuncionario=376",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ordemservico",
+						"buscarOSfuncionario"
+					],
+					"query": [
+						{
+							"key": "idFuncionario",
+							"value": "376"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarVeiculo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/veiculo/buscar?id=379",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"veiculo",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "379"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

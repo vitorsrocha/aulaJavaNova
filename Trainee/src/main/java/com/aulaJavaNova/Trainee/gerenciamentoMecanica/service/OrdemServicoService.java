@@ -2,11 +2,21 @@ package com.aulaJavaNova.Trainee.gerenciamentoMecanica.service;
 
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.domain.*;
 import com.aulaJavaNova.Trainee.gerenciamentoMecanica.repository.*;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.crypto.Data;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,45 +27,67 @@ public class OrdemServicoService {
     private final VeiculoRepository veiculoRepository;
     private final OrcamentoRespository orcamentoRespository;
     private final OrdemServicoRepository ordemServicoRepository;
-    private final RegistroDiaTrabalhoepository registroDiaTrabalhoepository;
+    private final RegistroDiaTrabalhoRepository registroDiaTrabalhoRepository;
 
 
-    public OrdemServicoService(OrdemServicoRepository repository, FuncionarioRepository funcionarioRepository, VeiculoRepository veiculoRepository, OrcamentoRespository orcamentoRespository, OrdemServicoRepository ordemServicoRepository, RegistroDiaTrabalhoepository registroDiaTrabalhoepository) {
+    public OrdemServicoService(OrdemServicoRepository repository, FuncionarioRepository funcionarioRepository, VeiculoRepository veiculoRepository, OrcamentoRespository orcamentoRespository, OrdemServicoRepository ordemServicoRepository, RegistroDiaTrabalhoRepository registroDiaTrabalhoRepository) {
         this.repository = repository;
         this.funcionarioRepository = funcionarioRepository;
         this.veiculoRepository = veiculoRepository;
         this.orcamentoRespository = orcamentoRespository;
         this.ordemServicoRepository = ordemServicoRepository;
-        this.registroDiaTrabalhoepository = registroDiaTrabalhoepository;
+        this.registroDiaTrabalhoRepository = registroDiaTrabalhoRepository;
     }
 
     @Transactional
     public OrdemServico criarOs(OrdemServico ordemServico){
-       Optional<Veiculo> veiculoBanco = this.veiculoRepository.findById(ordemServico.getVeiculo().getId());
+
         Optional<Orcamento> orcamentoBanco = this.orcamentoRespository.findById(ordemServico.getOrcamento().getId());
-        if (veiculoBanco.isPresent() && orcamentoBanco.isPresent()) {
+
+        LocalDateTime dataAtualInicio = LocalDateTime.now();
+        LocalDateTime dataFim = dataAtualInicio.plusDays(orcamentoBanco.get().getTotalDiasEntrega());
+
+
+        if (orcamentoBanco.isPresent()) {
             for (int i = 0; i < ordemServico.getFuncionario().size();i++) {
                 Optional<Funcionario> funcionarioBanco = this.funcionarioRepository.findById(ordemServico.getFuncionario().get(i).getId());
                 if (!funcionarioBanco.isPresent() || !funcionarioBanco.get().isMecanico()) {
                     return null;
                 }
+
+                ordemServico.setDataInicio(dataAtualInicio);
+                ordemServico.setDataFim(dataFim);
                 return repository.save(ordemServico);
             }
         }
        return null;
     }
+    private long calcularDiasEntreDatas( LocalDateTime dataConclusao,LocalDateTime dataFim ){
+        //System.out.println(data + " dataquandoChega");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd");
+       // System.out.println(data + " dataTransformada");
+
+        long diferencaEmDias = ChronoUnit.DAYS.between(dataConclusao, dataFim);
+
+        return diferencaEmDias;
+
+    }
+
     @Transactional
-    public OrdemServico finalizarOS(int id, boolean status){
+    public OrdemServico finalizarOS(int id){
         Optional<OrdemServico> ordemServicoBanco = this.repository.findById(id);
 
-        SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = new Date();
-        String strDate = sm.format(data);
+        LocalDateTime dataConclusao = LocalDateTime.now();
+
 
         if(ordemServicoBanco.isPresent() && ordemServicoBanco.get().getFechada() == false){
             OrdemServico os = ordemServicoBanco.get();
             os.setFechada(true);
-            os.setDataConclusao(strDate);
+            os.setDataConclusao(dataConclusao);
+            long produtividade = calcularDiasEntreDatas(dataConclusao,os.getDataFim());
+            System.out.println(produtividade);
+            os.setProdutividade(produtividade);
+
             return repository.save(os);
         }
         return null;
@@ -67,30 +99,43 @@ public class OrdemServicoService {
         Optional<OrdemServico> ordemServicoBanco = this.ordemServicoRepository.findById(registro.getOrdemServico().getId());
 
         if (ordemServicoBanco.isPresent()){
-            return this.registroDiaTrabalhoepository.save(registro);
+            registro.setFuncionario(ordemServicoBanco.get().getFuncionario().get(0));
+            return this.registroDiaTrabalhoRepository.save(registro);
         }
         return null;
     }
-   /* @Transactional
-    public OrdemServico gerarOrcamento(int id){
-        Optional<OrdemServico> osBanco = this.repository.findById(id);
-        List<String> problemasOs = new ArrayList<>();
-//        BigDecimal valorPeca = BigDecimal.ZERO;
-//        BigDecimal valorMaoDeObra = BigDecimal.ZERO;
 
-        if (osBanco.isPresent()){
-            OrdemServico os = osBanco.get();
-            for (Problema problemas: osBanco.get().getProblema()){
-                problemasOs.add("Defeito: " + problemas.getDefeito() + "\nValor peça: " + problemas.getValor());
-                os.setTotalPrecoPecas(os.getTotalPrecoPecas().add(problemas.getValor()));
-                os.setTotalPrecoMaoDeObra(os.getTotalPrecoMaoDeObra().add(problemas.getValorMaoDeObra()));
-                os.setTotalDiasEntrega(os.getTotalDiasEntrega() + problemas.getQtdDiasParaFazer());
+    @Transactional
+    public List<OrdemServico> buscarOrdemServicoPorFuncionario(int id){
 
+        Optional<Funcionario> funcionarioBanco = this.funcionarioRepository.findById(id);
+        List<OrdemServico> osFuncionario = this.ordemServicoRepository.findAll();
+        List<OrdemServico> osFuncionarioLocalizada = new ArrayList<>();
+
+        if (funcionarioBanco.isPresent()){
+            for (int i= 0 ; i < osFuncionario.size();i++){
+                for (int j= 0 ; j < osFuncionario.get(i).getFuncionario().size();j++){
+                    if (funcionarioBanco.get().getId() == osFuncionario.get(i).getFuncionario().get(j).getId()){
+                        osFuncionarioLocalizada.add(osFuncionario.get(i));
+                    }
+                }
             }
-            return os;
+            return osFuncionarioLocalizada;
+        }
+        return null;
+    }
+    @Transactional
+    public OrdemServico registroBuscaVeiculo(int idOS){
+        Optional<OrdemServico> ordemServicoBanco = this.repository.findById(idOS);
+        if (ordemServicoBanco.isPresent() && ordemServicoBanco.get().getFechada() == true){
+            LocalDateTime dataAtual= LocalDateTime.now();
 
+            OrdemServico os = ordemServicoBanco.get();
+            os.setDataBuscaVeiculo(dataAtual);
+            return repository.save(os);
         }
         return null;
 
-    }*/
+    }
+
 }

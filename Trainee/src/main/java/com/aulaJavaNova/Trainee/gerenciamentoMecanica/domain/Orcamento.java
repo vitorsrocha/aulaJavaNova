@@ -17,14 +17,18 @@ import java.util.List;
 @NoArgsConstructor
 public class Orcamento extends Ids {
 
-    @JoinColumn
+    @JoinColumn(name = "Funcionario_id")
     @OneToOne
     private Funcionario funcionario;
     private Date data = new Date();
 
-    @JoinColumn
+    @JoinColumn(name = "Problema_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Problema> problemas;
+
+    @JoinColumn(name = "Veiculo_id")
+    @OneToOne
+    private Veiculo veiculo;
 
     private BigDecimal valorTotalPeca = BigDecimal.ZERO;
     private BigDecimal valorTotalMaoDeObra = BigDecimal.ZERO;

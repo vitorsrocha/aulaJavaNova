@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegistroDiaTrabalhoepository extends JpaRepository<RegistroDiaTrabalho,Integer> {
+public interface RegistroDiaTrabalhoRepository extends JpaRepository<RegistroDiaTrabalho,Integer> {
 }
